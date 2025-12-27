@@ -6,6 +6,7 @@ import in.MohdSohel.Server_Background_Image_Remover.repositories.UserRepository;
 import in.MohdSohel.Server_Background_Image_Remover.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -47,6 +48,22 @@ public class UserServiceImpl implements UserService {
 
         log.info(("Saved New User.."));
         return entityToDto(newUser);
+    }
+
+    @Override
+    public UserDto getUserByClerkId(String clerkId) {
+        log.info("UserServiceImpl getUserByClerkId");
+        User user = userRepository.findByClerkId(clerkId)
+                .orElseThrow(()->new UsernameNotFoundException("User not found"));
+        return entityToDto(user);
+    }
+
+    @Override
+    public void deleteUserByClerkId(String clerkId) {
+        log.info("UserServiceImpl deleting User By ClerkId");
+        User user = userRepository.findByClerkId(clerkId)
+                .orElseThrow(()->new UsernameNotFoundException("User not found"));
+        userRepository.delete(user);
     }
 
     private User dtoToEntity(UserDto userDto) {

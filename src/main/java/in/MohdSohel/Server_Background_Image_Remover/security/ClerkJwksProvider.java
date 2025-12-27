@@ -57,8 +57,8 @@ public class ClerkJwksProvider {
         byte[] modulusBytes = Base64.getUrlDecoder().decode(modulus);
         byte[] exponentBytes = Base64.getUrlDecoder().decode(exponent);
 
-        BigInteger modulusBigInteger = new BigInteger(modulusBytes);
-        BigInteger exponentBigInteger = new BigInteger(exponentBytes);
+        BigInteger modulusBigInteger = new BigInteger(1,modulusBytes);
+        BigInteger exponentBigInteger = new BigInteger(1,exponentBytes);
 
         RSAPublicKeySpec spec = new RSAPublicKeySpec(modulusBigInteger, exponentBigInteger);
         KeyFactory factory = KeyFactory.getInstance("RSA");
