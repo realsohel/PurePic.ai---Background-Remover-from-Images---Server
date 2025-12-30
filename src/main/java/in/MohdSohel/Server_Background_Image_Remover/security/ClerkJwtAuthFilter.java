@@ -65,7 +65,7 @@ public class ClerkJwtAuthFilter extends OncePerRequestFilter {
 
             String clerkUserId = claims.getSubject();
 
-            UsernamePasswordAuthenticationToken authenticationToken = new  UsernamePasswordAuthenticationToken(clerkUserId,null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+            UsernamePasswordAuthenticationToken authenticationToken = new  UsernamePasswordAuthenticationToken(clerkUserId,null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
             filterChain.doFilter(request,response);
