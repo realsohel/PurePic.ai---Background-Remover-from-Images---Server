@@ -46,7 +46,7 @@ public class SecurityConfig {
 
     private UrlBasedCorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration cors = new CorsConfiguration();
-        cors.setAllowedOrigins(List.of("http://localhost:5173"));
+        cors.setAllowedOrigins(List.of("http://localhost:5173", "https://pure-pic-ai-background-remover-from.vercel.app"));
         cors.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH", "OPTIONS"));
         cors.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         cors.setAllowCredentials(true);
